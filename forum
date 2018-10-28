@@ -1,0 +1,46 @@
+rails g model post title:string content:text
+  rake db:migrate
+
+ rails g controller posts
+
+posts_controller.rb 
+    def index
+    end
+
+routes.rb
+    resources :posts
+    root 'posts#index'
+
+rails generate devise:install
+rails generate devise user
+rake db:migrate
+post.rb
+   belongs_to :user
+user.rb
+   has_many :posts
+
+ rails g migration add_user_id_to_posts user_id:integer
+
+rails c
+@post = Post.first
+
+
+
+https://www.youtube.com/watch?v=rTP1eMfI5Bs&index=10&list=PL23ZvcdS3XPLNdRYB_QyomQsShx59tpc-
+1:002
+
+rails g model Comment comment:text post:references user:references
+rake db:migrate
+
+post.rb
+   has_many :comments
+user.rb
+   has_many :comments
+routes.rb
+    resources :posts do
+  	resources :comments
+  end
+
+rails g controller Comments
+
+ Comment_controller.rb
